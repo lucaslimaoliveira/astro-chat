@@ -25,6 +25,18 @@ jobs:
       - name: Baixar o projeto
         uses: actions/checkout@v4
 
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependências de teste
+        run: npm ci --ignore-scripts
+
+      - name: Validar a integração do chat
+        run: npm test
+
       - name: Configurar o GitHub Pages
         uses: actions/configure-pages@v5
 
